@@ -1,0 +1,17 @@
+.box {
+    min-width: 100px !important;
+    min-height: 110px !important;
+}
+
+#searchButton:hover {
+    background-color: #007bff; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+    border-color: #007bff; /* Change border color on hover */
+}
+
+/* Style for the current location button when hovered */
+#currentLocationButton:hover {
+    background-color: #28a745; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+    border-color: #28a745; /* Change border color on hover */
+}
