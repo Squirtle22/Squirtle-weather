@@ -1,5 +1,5 @@
 // API key for OpenWeatherMap
-const apiKey = ''; //api key needed get from https://openweathermap.org/api
+const apiKey = '459a17a0442057005bfd7be5d7f4ae13'; //api key needed get from https://openweathermap.org/api
 
 // Variables to store city name, latitude, and longitude
 let cityName = ''; // Initialize with the default city name
