@@ -145,6 +145,9 @@ function degreesToCardinal(degrees) {
   return cardinals[index];
 }
 
+
+
+
 // Add a click event listener to the search button
 document.getElementById("searchButton").addEventListener("click", handleSearch);
 

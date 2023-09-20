@@ -16,7 +16,22 @@
     border-color: #28a745; /* Change border color on hover */
 }
 
-
-@media  {
-    
-}
+:root {
+    --background-color: #fff;
+    --text-color: #000;
+    /* Add more CSS variables as needed */
+  }
+  
+  /* Dark mode styles */
+  [data-dark-mode] {
+    --background-color: #000;
+    --text-color: #fff;
+    /* Adjust other styles for dark mode */
+  }
+  
+  /* Apply styles using CSS variables */
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
