@@ -39,7 +39,7 @@ function getAPICall(search) {
       const windDirection = data.wind.deg;
       const condition = data.weather[0].description;
       const windDirectionCardinal = degreesToCardinal(windDirection);
-      
+
       // Log data and condition to the console
       console.log(data);
       console.log(condition);
@@ -75,10 +75,14 @@ function handleSearch() {
     alert("Invalid city name. Please enter a valid city name.");
     return;
   }
-  
+
   // Call the function to make the API call with the formatted city name
   getAPICall(`q=${cityName}`);
+
+  // Clear the input field after making the API call
+  document.getElementById("cityInput").value = '';
 }
+
 
 // Function to handle Enter key press in the input field
 function handleEnterKeyPress(event) {
@@ -145,9 +149,6 @@ function degreesToCardinal(degrees) {
   return cardinals[index];
 }
 
-
-
-
 // Add a click event listener to the search button
 document.getElementById("searchButton").addEventListener("click", handleSearch);
 
@@ -165,3 +166,6 @@ updateDatetime();
 
 // Set up an interval to update the time every second (1000 milliseconds)
 setInterval(updateDatetime, 1000);
+
+// Add an event listener for the 'load' event on the window object
+window.addEventListener('load', handleCurrentLocationButtonClick);
