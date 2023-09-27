@@ -5,6 +5,7 @@ const apiKey = '459a17a0442057005bfd7be5d7f4ae13'; //api key needed get from htt
 let cityName = ''; // Initialize with the default city name
 let latitude = '';
 let longitude = '';
+let iconElemnt = '';
 
 // DOM element for unit link (Celsius/Fahrenheit)
 const unitLink = document.getElementById("unitLink");
@@ -39,6 +40,9 @@ function getAPICall(search) {
       const windDirection = data.wind.deg;
       const condition = data.weather[0].description;
       const windDirectionCardinal = degreesToCardinal(windDirection);
+      const weatherIconCode = data.weather[0].icon;
+      const weatherIconUrl = `https://openweathermap.org/img/w/${weatherIconCode}.png`;
+
 
       // Log data and condition to the console
       console.log(data);
@@ -51,6 +55,7 @@ function getAPICall(search) {
       updateElementText("wind", `Wind: ${wind} mph`);
       updateElementText("windDirection", `Wind Direction: ${windDirectionCardinal}`);
       updateElementText("condition", `Condition: ${condition}`);
+      document.getElementById("weatherIcon").src = weatherIconUrl;
     })
     .catch((error) => {
       // Handle errors and display an alert for an invalid city name
@@ -169,3 +174,5 @@ setInterval(updateDatetime, 1000);
 
 // Add an event listener for the 'load' event on the window object
 window.addEventListener('load', handleCurrentLocationButtonClick);
+
+
