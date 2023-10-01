@@ -39,7 +39,6 @@
     align-items: center;
     /* Set a fixed height (optional) */
     height: 100vh; /* 100% of the viewport height */
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 10);
 }
 
   
