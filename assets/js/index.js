@@ -12,14 +12,18 @@ const unitLink = document.getElementById("unitLink");
 // Function to get the current date and time
 function getCurrentDatetime() {
   const currentDatetime = new Date();
-  return currentDatetime.toLocaleString();
+  return currentDatetime
 }
 
 // Function to update the date and time displayed on the webpage
 function updateDatetime() {
   const formattedDatetime = getCurrentDatetime();
-  document.getElementById("currentDatetime").textContent = formattedDatetime;
+  const newdatetime = formattedDatetime.toLocaleString();
+  document.getElementById("currentDatetime").textContent = newdatetime;
 }
+
+const datetime = getCurrentDatetime()
+const day = datetime.getDay()
 
 // Function to make the API call to fetch weather data
 function getAPICall(search) {
@@ -39,10 +43,12 @@ function getAPICall(search) {
       const windDirection = data.wind.deg;
       const condition = data.weather[0].description;
       const windDirectionCardinal = degreesToCardinal(windDirection);
+      const weatherIconCode = data.weather[0].icon;
+      const weatherIconUrl = `https://openweathermap.org/img/w/${weatherIconCode}.png`;
 
       // Log data and condition to the console
-      console.log(data);
-      console.log(condition);
+      // console.log(data);
+      // console.log(condition);
 
       // Update elements on the page with the fetched weather data
       updateElementText("cityName", city);
@@ -51,6 +57,12 @@ function getAPICall(search) {
       updateElementText("wind", `Wind: ${wind} mph`);
       updateElementText("windDirection", `Wind Direction: ${windDirectionCardinal}`);
       updateElementText("condition", `Condition: ${condition}`);
+      updateElementText(`${day}temp`, `${Math.round(temperatureCelsius)}°C`)
+      document.getElementById("weatherIcon").src = weatherIconUrl;
+      // Inside the getAPICall function after updating the weather data
+      changeDayOfWeekWeather(day, weatherIconUrl);
+
+
     })
     .catch((error) => {
       // Handle errors and display an alert for an invalid city name
@@ -149,6 +161,11 @@ function degreesToCardinal(degrees) {
   return cardinals[index];
 }
 
+function changeDayOfWeekWeather(day, weatherIconUrl) {
+  const dayElement = document.getElementById(day); // Get the element by its day ID
+  dayElement.src = weatherIconUrl
+}
+
 // Add a click event listener to the search button
 document.getElementById("searchButton").addEventListener("click", handleSearch);
 
@@ -169,3 +186,6 @@ setInterval(updateDatetime, 1000);
 
 // Add an event listener for the 'load' event on the window object
 window.addEventListener('load', handleCurrentLocationButtonClick);
+
+
+

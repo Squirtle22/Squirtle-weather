@@ -33,5 +33,13 @@
   body {
     background-color: var(--background-color);
     color: var(--text-color);
-  }
+    display: flex;
+    justify-content: center;
+     /* Center vertically */
+    align-items: center;
+    /* Set a fixed height (optional) */
+    height: 100vh; /* 100% of the viewport height */
+}
+
+  
   

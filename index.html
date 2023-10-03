@@ -20,7 +20,7 @@
 </head>
 
 <body class="p-2">
-  <div class="border border-black rounded-4 w-50 px-2 ">
+  <div class="border border-black rounded-4 w-50 px-2">
     <div>
       <label for="search" class="fixed-top-right pt-3">City</label>
       <input type="text" id="cityInput" placeholder="Search">
@@ -28,14 +28,14 @@
       <button id="currentLocationButton" class="location-button">
         <span class="location-icon">&#128205;</span>
       </button>
-      
+
 
     </div>
     <div class="container">
       <div class="row align-items-center justify-content-between">
         <div class="col">
           <div class="pt-4 p-4 d-flex ">
-            <img src="/assets/images/partly_cloudy.png" alt="weather" class="border border-black rounded-circle p-3">
+            <img src="" alt="weather" id="weatherIcon" class="border border-black rounded-circle p-3">
             <div>
               <h5 class="p-2 pt-1 pb-0" id="cityName"><strong></strong></h5>
               <h2 class="p-3 pt-0" id="Temperature"><strong id="temperatureValue"></strong>
@@ -1483,8 +1483,8 @@
               <div>
                 <h3 class="border border-black rounded p-3">Mon</h3>
                 <div class="border border-black rounded">
-                  <img src="/assets/images/sunny.png" alt="" class="px-4" width="100" height="50">
-                  <p id="Mon" class="px-4">29°C</p>
+                  <img id="1" src="/assets/images/sunny.png" alt="" class="px-4" width="100" height="50">
+                  <p class="px-4">29°C</p>
                 </div>
               </div>
             </a>
@@ -1494,8 +1494,8 @@
               <div>
                 <h3 class="border border-black rounded p-3">Tue</h3>
                 <div class="border border-black rounded">
-                  <img src="/assets/images/sunny.png" alt="" class="px-4" width="100" height="50">
-                  <p id="Tue" class="px-4">28°C</p>
+                  <img id="2" src="/assets/images/sunny.png" alt="" class="px-4" width="100" height="50">
+                  <p class="px-4">28°C</p>
                 </div>
               </div>
             </a>
@@ -1505,8 +1505,8 @@
               <div class="justify-content-between">
                 <h3 class="border border-black rounded p-3">Wed</h3>
                 <div class="border border-black rounded">
-                  <img src="/assets/images/Fog.png" alt="" class="px-4" width="100" height="50">
-                  <p id="Wed" class="px-4">15°C</p>
+                  <img id="3" src="/assets/images/Fog.png" alt="" class="px-4" width="100" height="50">
+                  <p id="3temp" class="px-4">15°C</p>
                 </div>
               </div>
             </a>
@@ -1516,8 +1516,8 @@
               <div>
                 <h3 class="border border-black rounded p-3">Thu</h3>
                 <div class="border border-black rounded">
-                  <img src="/assets/images/partly_cloudy.png" alt="" class="px-4" width="100" height="50">
-                  <p id="Thur" class="px-4">28°C</p>
+                  <img id="4" src="/assets/images/partly_cloudy.png" alt="" class="px-4" width="100" height="50">
+                  <p class="px-4">28°C</p>
                 </div>
               </div>
             </a>
@@ -1527,8 +1527,8 @@
               <div>
                 <h3 class="border border-black rounded p-3">Fri</h3>
                 <div class="border border-black rounded">
-                  <img src="/assets/images/rain.png" alt="" class="px-4" width="100" height="50">
-                  <p id="Fri" class="px-4">10°C</p>
+                  <img id="5" src="/assets/images/rain.png" alt="" class="px-4" width="100" height="50">
+                  <p class="px-4">10°C</p>
                 </div>
               </div>
             </a>
@@ -1538,8 +1538,8 @@
               <div>
                 <h3 class="border border-black rounded p-3">Sat</h3>
                 <div class="border border-black rounded">
-                  <img src="/assets/images/partly_cloudy.png" alt="" class="px-4" width="100" height="50">
-                  <p id="Sat" class="px-4">20°C</p>
+                  <img id="6" src="/assets/images/partly_cloudy.png" alt="" class="px-4" width="100" height="50">
+                  <p class="px-4">20°C</p>
                 </div>
               </div>
             </a>
@@ -1550,7 +1550,7 @@
                 <h3 class="border border-black rounded p-3">Sun</h3>
                 <div class="border border-black rounded">
                   <img src="/assets/images/partly_cloudy.png" alt="" class="px-4" width="100" height="50">
-                  <p id="Sun" class="px-4">23°C</p>
+                  <p class="px-4">23°C</p>
                 </div>
               </div>
             </a>
