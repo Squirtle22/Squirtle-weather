@@ -1,5 +1,5 @@
 // API key for OpenWeatherMap
-const apiKey = '459a17a0442057005bfd7be5d7f4ae13'; //api key needed get from https://openweathermap.org/api
+const apiKey = '459a17a0442057005bfd7be5d7f4ae13'; //api key needed get from https://openwea9thermap.org/api
 
 // Variables to store city name, latitude, and longitude
 let cityName = ''; // Initialize with the default city name
@@ -27,27 +27,26 @@ const day = datetime.getDay()
 
 // Function to make the API call to fetch weather data
 function getAPICall(search) {
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?${search}&appid=${apiKey}&units=metric`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?${search}&appid=${apiKey}&units=metric`;
 
   return fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
       // Extract weather data from the API response
-      const city = data.name;
-      const temperatureCelsius = data.main.temp;
-      const humidity = data.main.humidity;
-      const pressure = data.main.pressure;
-      const temp_max = data.main.temp_max;
-      const temp_min = data.main.temp_min;
-      const wind = Math.round(data.wind.speed);
-      const windDirection = data.wind.deg;
-      const condition = data.weather[0].description;
+      const city = data.city.name;
+      const temperatureCelsius = data.list[0].main.temp;
+      const humidity = data.list[0].main.humidity;
+      const pressure = data.list[0].main.pressure;
+      const wind = Math.round(data.list[0].wind.speed);
+      const windDirection = data.list[0].wind.deg;
+      const condition = data.list[0].weather[0].description;
       const windDirectionCardinal = degreesToCardinal(windDirection);
-      const weatherIconCode = data.weather[0].icon;
+      const weatherIconCode = data.list[0].weather[0].icon;
       const weatherIconUrl = `https://openweathermap.org/img/w/${weatherIconCode}.png`;
 
+
       // Log data and condition to the console
-      // console.log(data);
+      console.log(weatherIconUrl);
       // console.log(condition);
 
       // Update elements on the page with the fetched weather data
@@ -57,12 +56,12 @@ function getAPICall(search) {
       updateElementText("wind", `Wind: ${wind} mph`);
       updateElementText("windDirection", `Wind Direction: ${windDirectionCardinal}`);
       updateElementText("condition", `Condition: ${condition}`);
-      updateElementText(`${day}temp`, `${Math.round(temperatureCelsius)}°C`)
       document.getElementById("weatherIcon").src = weatherIconUrl;
-      // Inside the getAPICall function after updating the weather data
-      changeDayOfWeekWeather(day, weatherIconUrl);
 
 
+
+      // Call the function to create the 5-day weather forecast
+      createFiveDayWeatherForecast(data);
     })
     .catch((error) => {
       // Handle errors and display an alert for an invalid city name
@@ -161,10 +160,6 @@ function degreesToCardinal(degrees) {
   return cardinals[index];
 }
 
-function changeDayOfWeekWeather(day, weatherIconUrl) {
-  const dayElement = document.getElementById(day); // Get the element by its day ID
-  dayElement.src = weatherIconUrl
-}
 
 // Dark mode toggle
 const darkModeToggle = document.getElementById('darkModeToggle');
@@ -189,6 +184,48 @@ darkModeToggle.addEventListener('click', () => {
 
   }
 });
+
+// create a function that loops though the results of the api call creating 5 days of weather
+// placing thme in a li attached to the ul with the id of 5day
+// Function to create a 5-day weather forecast
+function createFiveDayWeatherForecast(weatherData) {
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const forecastList = weatherData.list;
+
+  // Get the ul element where you want to append the forecast items
+  const forecastListElement = document.getElementById("5Days");
+
+  // Clear any existing forecast items
+  forecastListElement.innerHTML = "";
+
+  for (let i = 0; i < forecastList.length; i += 8) {
+    const forecastItem = forecastList[i];
+    const datetime = new Date(forecastItem.dt * 1000);
+    const dayOfWeek = days[datetime.getDay()];
+
+    // Create a new li element for each day's forecast
+    const listItem = document.createElement("li");
+    listItem.classList.add("px-2");
+
+    // Create the forecast content
+    const forecastContent = `
+      <a href="#" class="text-decoration-none text-black p-1">
+        <div>
+          <h3 class="border border-black rounded p-3">${dayOfWeek}</h3>
+          <div class="border border-black rounded">
+            <img src="https://openweathermap.org/img/w/${forecastItem.weather[0].icon}.png" alt="" class="px-4" width="100" height="50">
+            <p class="px-4">${Math.round(forecastItem.main.temp)}°C</p>
+          </div>
+        </div>
+      </a>
+    `;
+
+    listItem.innerHTML = forecastContent;
+
+    // Append the forecast item to the ul
+    forecastListElement.appendChild(listItem);
+  }
+}
 
 
 // Add a click event listener to the search button
