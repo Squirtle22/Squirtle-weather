@@ -1,42 +1,77 @@
 .box {
-    min-width: 100px !important;
-    min-height: 110px !important;
+  min-width: 100px !important;
+  min-height: 110px !important;
 }
 
 #searchButton:hover {
-    background-color: #007bff; /* Change background color on hover */
-    color: #fff; /* Change text color on hover */
-    border-color: #007bff; /* Change border color on hover */
+  background-color: #007bff;
+  /* Change background color on hover */
+  color: #fff;
+  /* Change text color on hover */
+  border-color: #007bff;
+  /* Change border color on hover */
 }
 
 /* Style for the current location button when hovered */
 #currentLocationButton:hover {
-    background-color: #28a745; /* Change background color on hover */
-    color: #fff; /* Change text color on hover */
-    border-color: #28a745; /* Change border color on hover */
+  background-color: #28a745;
+  /* Change background color on hover */
+  color: #fff;
+  /* Change text color on hover */
+  border-color: #28a745;
+  /* Change border color on hover */
 }
 
 :root {
-    --background-color: #fff;
-    --text-color: #000;
-    --border-color: #000;
-    /* Add more CSS variables as needed */
-  }
-  
-  /* Dark mode styles */
-  [data-dark-mode] {
-    --background-color: #000;
-    --text-color: #fff;
-    --border-color: #fff;
-    /* Adjust other styles for dark mode */
-  }
-  
-  body, .border, ul, li, h3, h5, h2, p, label, input, button, small, a {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    border-color: var(--border-color) !important;
-  }
+  --background-color: #fff;
+  --text-color: #000;
+  --border-color: #000;
+  /* Add more CSS variables as needed */
+}
+
+/* Dark mode styles */
+[data-dark-mode] {
+  --background-color: #000;
+  --text-color: #fff;
+  --border-color: #fff;
+  /* Adjust other styles for dark mode */
+}
+
+body,
+.border,
+ul,
+li,
+h3,
+h5,
+h2,
+p,
+label,
+input,
+button,
+small,
+a {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-color: var(--border-color) !important;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Style the temperature unit link */
+#unitLink {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+#temperatureChart {
+  max-width: 100%;
+  margin-top: 0;
+}
 
 
-  
-  

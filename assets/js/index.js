@@ -25,6 +25,43 @@ function updateDatetime() {
 const datetime = getCurrentDatetime()
 const day = datetime.getDay()
 
+
+// Function to create and update the temperature chart
+// Function to create and update the temperature chart
+function createTemperatureChart(chart, labels, temperatureData) {
+  chart.data.labels = labels;
+  chart.data.datasets[0].data = temperatureData;
+  chart.update(); // Update the chart with new data
+}
+
+const ctx = document.getElementById('temperatureChart').getContext('2d');
+let temperatureChart; // Declare a variable to store the chart instance globally
+
+// Create the initial temperature chart with empty data
+temperatureChart = new Chart(ctx, {
+  type: 'bar', // Use a line chart for temperature data
+  data: {
+    labels: [],
+    datasets: [{
+      label: 'Temperature (°C)',
+      data: [],
+      borderColor: 'blue',
+      backgroundColor: 'rgba(0,0,139)',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: false
+      },
+
+    }
+  }
+});
+
+
+
 // Function to make the API call to fetch weather data
 function getAPICall(search) {
   const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?${search}&appid=${apiKey}&units=metric`;
@@ -62,12 +99,32 @@ function getAPICall(search) {
 
       // Call the function to create the 5-day weather forecast
       createFiveDayWeatherForecast(data);
+
+      const labels = data.list.map((item) => getFormattedDate(item.dt_txt));
+      const temperatureData = data.list.map((item) => item.main.temp);
+      createTemperatureChart(temperatureChart, labels, temperatureData);
+      
+      
     })
     .catch((error) => {
       // Handle errors and display an alert for an invalid city name
       console.error("Error fetching weather data:", error);
       alert("Invalid city name. Please enter a valid city name.");
     });
+}
+
+// Function to format the date string to include day of the month and time
+function getFormattedDate(dateString) {
+  const date = new Date(dateString);
+  const dayOfMonth = date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  // Pad single-digit hours and minutes with a leading zero
+  const formattedHours = String(hours).padStart(2, '0');
+  const formattedMinutes = String(minutes).padStart(2, '0');
+
+  return `${dayOfMonth}/${formattedHours}:${formattedMinutes}`;
 }
 
 // Function to handle the search button click event
@@ -227,9 +284,16 @@ function createFiveDayWeatherForecast(weatherData) {
   }
 }
 
+// Inside the click event listener for the search button
+document.getElementById("searchButton").addEventListener("click", () => {
+  const city = document.getElementById("cityInput").value;
+  getAPICall(`q=${city}`);
+});
 
-// Add a click event listener to the search button
+
+// Inside the click event listener for the search button
 document.getElementById("searchButton").addEventListener("click", handleSearch);
+
 
 // Add a key press event listener to the input field
 document.getElementById("cityInput").addEventListener("keypress", handleEnterKeyPress);
