@@ -19,6 +19,7 @@
 :root {
     --background-color: #fff;
     --text-color: #000;
+    --border-color: #000;
     /* Add more CSS variables as needed */
   }
   
@@ -26,20 +27,16 @@
   [data-dark-mode] {
     --background-color: #000;
     --text-color: #fff;
+    --border-color: #fff;
     /* Adjust other styles for dark mode */
   }
   
-  /* Apply styles using CSS variables */
-  body {
+  body, .border, ul, li, h3, h5, h2, p, label, input, button, small, a {
     background-color: var(--background-color);
     color: var(--text-color);
-    display: flex;
-    justify-content: center;
-     /* Center vertically */
-    align-items: center;
-    /* Set a fixed height (optional) */
-    height: 100vh; /* 100% of the viewport height */
-}
+    border-color: var(--border-color) !important;
+  }
+
 
   
   

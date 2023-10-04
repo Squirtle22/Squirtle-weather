@@ -166,6 +166,25 @@ function changeDayOfWeekWeather(day, weatherIconUrl) {
   dayElement.src = weatherIconUrl
 }
 
+// Dark mode toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+
+// Check local storage for dark mode preference
+if (localStorage.getItem('darkMode') === 'enabled') {
+  document.documentElement.setAttribute('data-dark-mode', 'true');
+}
+
+darkModeToggle.addEventListener('click', () => {
+  if (document.documentElement.hasAttribute('data-dark-mode')) {
+    document.documentElement.removeAttribute('data-dark-mode');
+    localStorage.setItem('darkMode', 'disabled');
+  } else {
+    document.documentElement.setAttribute('data-dark-mode', 'true');
+    localStorage.setItem('darkMode', 'enabled');
+  }
+});
+
+
 // Add a click event listener to the search button
 document.getElementById("searchButton").addEventListener("click", handleSearch);
 
