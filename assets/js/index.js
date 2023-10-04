@@ -178,9 +178,15 @@ darkModeToggle.addEventListener('click', () => {
   if (document.documentElement.hasAttribute('data-dark-mode')) {
     document.documentElement.removeAttribute('data-dark-mode');
     localStorage.setItem('darkMode', 'disabled');
+    // Change the icon to the moon
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+
   } else {
     document.documentElement.setAttribute('data-dark-mode', 'true');
     localStorage.setItem('darkMode', 'enabled');
+    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+
+
   }
 });
 
